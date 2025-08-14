@@ -6,12 +6,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ifsc.tarefas.model.Tarefa;
 import com.ifsc.tarefas.repository.TarefaRepository;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
-
-
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController //anotação que indica que essa classe é um service
 @RequestMapping("/tarefas") //anotação que define padrão url exemplo: /tarefas/inserir
@@ -37,6 +38,37 @@ public class TarefaService {
     @PostMapping("/inserir")
     public ResponseEntity<Tarefa> criarNovaTarefa(@RequestBody Tarefa tarefa){
         return ResponseEntity.ok(tarefaRepository.save(tarefa));
+    }
+
+    @PutMapping("editar/{id}")
+    public ResponseEntity<Tarefa> editarTarefa(@PathVariable Long id, @RequestBody Tarefa novaTarefa) {
+        
+        return tarefaRepository.findById(id).map
+            (
+            tarefa ->
+            {
+                tarefa.setTitulo(novaTarefa.getTitulo());
+                tarefa.setDescricao(novaTarefa.getDescricao());
+                tarefa.setResponsavel(novaTarefa.getResponsavel());
+                tarefa.setDataLimite(novaTarefa.getDataLimite());
+                tarefa.setStatus(novaTarefa.getStatus());
+                tarefa.setPrioridade(novaTarefa.getPrioridade());
+                return ResponseEntity.ok(tarefaRepository.save(tarefa));
+            }
+            
+            ).orElse(ResponseEntity.notFound().build());
+
+    }
+
+    @DeleteMapping("deletar/{id}")
+    public ResponseEntity<Tarefa> deletarTarefa(@PathVariable Long id) {
+        if(!tarefaRepository.existsById(id)){
+            return ResponseEntity.notFound().build();
+        }
+
+        tarefaRepository.deleteById(id);
+
+        return ResponseEntity.ok().build();
     }
     
 }
