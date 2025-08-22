@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Tarefas Cadastradas</h1>
+        <ul class="task-list">
+            <li class="task-card" th:each="tarefa: ${tarefas}">
+                <div class="task-header">
+                    <h2 th:text="${tarefa.titulo}">Título</h2>
+                    <span class="task-status" th:text="${tarefa.status}">Status</span>
+                </div>
+                <p class="task-description" th:text="${tarefa.descricao}">Descrição</p>
+                <div class="task-details">
+                    <span class="task-priority">Prioridade: <strong th:text="${tarefa.prioridade}"></strong></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

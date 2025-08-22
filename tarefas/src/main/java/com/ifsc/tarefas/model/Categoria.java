@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Categoria {
@@ -13,6 +14,9 @@ public class Categoria {
     private Long id;
 
     private String nome;
+
+    @ManyToOne
+    private Tarefa tarefa;
 
     public Long getId() {
         return id;

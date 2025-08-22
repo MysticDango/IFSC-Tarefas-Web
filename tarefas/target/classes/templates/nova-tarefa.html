@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar nova tarefa</title>
+    <link rel="stylesheet" th:href="@{/nova-style.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Nova Tarefa</h1>
+
+        <form th:action="@{/templates/salvar}" th:object="${tarefa}" method="post">
+
+            <div>
+                <label> Título </label>
+                <input th:field="*{titulo}" type="text">
+            </div>
+
+            <div>
+                <label> Descrição </label>
+                <textarea th:field="*{descricao}" rows="3"></textarea>
+            </div>
+
+            <div>
+                <label> Responsável </label>
+                <input th:field="*{responsavel}" type="text">
+            </div>
+
+            <div>
+                <label> Prioridade </label>
+                <select th:field="*{prioridade}">
+                    <option th:each="p : ${prioridades}" th:value="${p}" th:text="${p}"></option>
+                </select>
+            </div>
+
+            <div>
+                <label> Status </label>
+                <select th:field="*{status}">
+                    <option th:each="s : ${listaStatus}" th:value="${s}" th:text="${s}"></option>
+                </select>
+            </div>
+
+            <div>
+                <label> Data Limite </label>
+                <input type="date" th:field="*{dataLimite}">
+            </div>
+
+            <br>
+            <button type="submit">Salvar</button>
+            <button><a href="/templates/listar">Cancelar</button>
+
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+@import url('https://fonts.cdnfonts.com/css/arrancar');
+
+
+*{
+    font-family: 'Arrancar', sans-serif;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task-card {
+    background-color: #1f1f1f;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.task-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.task-header h2 {
+    font-size: 1.5em;
+    color: #ffffff;
+    margin: 0;
+}
+
+.task-status {
+    background-color: #ffffff;
+    color: #121212;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.task-description {
+    color: #a0a0a0;
+    line-height: 1.6;
+    margin: 0 0 15px 0;
+}
+
+.task-details {
+    font-size: 0.9em;
+    color: #888;
+}
+
+.task-priority strong {
+    color: #ffffff;
+    text-transform: capitalize;
+}
+
+/* Specific priority colors */
+/* You can add a condition to your Thymeleaf to apply these classes */
+/* Example: th:classappend="${tarefa.prioridade == 'alta'} ? 'priority-high'" */
+.priority-high strong {
+    color: #cf6679;
+}
+.priority-medium strong {
+    color: #ffc107;
+}
+.priority-low strong {
+    color: #4caf50;
+}

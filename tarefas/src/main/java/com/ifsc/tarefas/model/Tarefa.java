@@ -1,13 +1,18 @@
 package com.ifsc.tarefas.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Tarefa {
@@ -15,6 +20,8 @@ public class Tarefa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "tarefa_id")
     
     private String titulo;
     private String descricao;
@@ -22,6 +29,10 @@ public class Tarefa {
 
     private LocalDate dataCriacao = LocalDate.now();
     private LocalDate dataLimite;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "categoria_id")
+    private List<Categoria> categoria;
 
     @Enumerated(EnumType.STRING)
     private Status status;
