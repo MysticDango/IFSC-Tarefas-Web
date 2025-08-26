@@ -19,7 +19,22 @@
                 <div class="task-details">
                     <span class="task-priority">Prioridade: <strong th:text="${tarefa.prioridade}"></strong></span>
                 </div>
+                <div class="task-data">
+                    <span class="task-limit">Data Limite: <strong th:text="${tarefa.dataLimite}"></strong></span>
+                </div>
+                <div class="task-category">
+                    <span class="task-cat">Categorias: <strong th:text="${categoria.nome}"></strong></span>
+                </div>
+                <div class="task-delete">
+                    <span>
+                    <form th:action="@{'/templates/' + ${tarefa.id} + '/excluir'}" method="post">
+                        <button onclick="return confirm('Tem certeza que deseja excluir?')" 
+                        type="submit">Excluir</button>
+                    </form>
+            </span>
+                </div>
             </li>
+            <button><a href="/templates/nova-tarefa">Nova Tarefa</a></button>
         </ul>
     </div>
 </body>

@@ -93,15 +93,22 @@ h1 {
     text-transform: capitalize;
 }
 
-/* Specific priority colors */
-/* You can add a condition to your Thymeleaf to apply these classes */
-/* Example: th:classappend="${tarefa.prioridade == 'alta'} ? 'priority-high'" */
-.priority-high strong {
-    color: #cf6679;
+.task-data {
+    font-size: 0.9em;
+    color: #888;
 }
-.priority-medium strong {
-    color: #ffc107;
+
+.task-limit strong {
+    color: #ffffff;
+    text-transform: capitalize;
 }
-.priority-low strong {
-    color: #4caf50;
+
+.task-category {
+    font-size: 0.9em;
+    color: #888;
+}
+
+.task-cat strong {
+    color: #ffffff;
+    text-transform: capitalize;
 }

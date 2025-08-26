@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ifsc.tarefas.model.Prioridade;
@@ -49,6 +50,29 @@ public class TemplateService {
         //Redireciona depois de salvar direto para listagem
         return "redirect:/templates/listar";
     }
+
+    //Deletar uma tarefa
+    @PostMapping("{id}/excluir")
+    String excluir(@PathVariable Long id) {
+        tarefaRepository.deleteById(id);
+        return "redirect:/templates/listar";
+    }
+
+    @GetMapping("{id}/editar")
+        String editar(@PathVariable Long id, Model model) {
+        // vai procurar tarefas pelo id, se n achar
+        var tarefa = tarefaRepository.findById(id).orElse(null);
+        if(tarefa == null) {
+            // retornar para pagina inicial
+            return "redirect:/templates/listar";
+        }
+        model.addAttribute("tarefa", tarefa);
+        model.addAttribute("prioridades", Prioridade.values());
+        model.addAttribute("listaStatus", Status.values());
+        return "tarefa";
+    }
+    
+    
 }
     
     

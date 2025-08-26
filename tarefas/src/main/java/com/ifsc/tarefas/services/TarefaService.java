@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ifsc.tarefas.model.Tarefa;
 import com.ifsc.tarefas.repository.TarefaRepository;
+import com.ifsc.tarefas.repository.CatRepository;
+
+import jakarta.transaction.Transactional;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +21,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RequestMapping("/tarefas") //anotação que define padrão url exemplo: /tarefas/inserir
 public class TarefaService {
     private final TarefaRepository tarefaRepository;
+    private final CatRepository catRepository;
 
     //Injetando o repositorio de tarefa pra usar no service e buscar coisas no banco
-    public TarefaService(TarefaRepository tarefaRepository){
+    public TarefaService(TarefaRepository tarefaRepository, CatRepository catRepository){
         this.tarefaRepository = tarefaRepository;
+        this.catRepository = catRepository;
     }
 
     //Anotação para GET
@@ -70,5 +75,24 @@ public class TarefaService {
 
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping("/{tarefaId}/associar-categoria/{categoriaId}")
     
+    @Transactional 
+    public ResponseEntity<Void> associarTarefaParaUmaCategoria(
+        @PathVariable Long tarefaId,
+        @PathVariable Long categoriaId
+    ){
+        var tarefa = tarefaRepository.findById(tarefaId);
+        var categoria = catRepository.findById(categoriaId);
+
+        if(tarefa.isEmpty() || categoria.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        tarefa.get().getCategorias().add(categoria.get());
+
+        tarefaRepository.save(tarefa.get());
+
+        return ResponseEntity.ok().build();
+    }
 }

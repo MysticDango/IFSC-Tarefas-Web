@@ -1,18 +1,19 @@
 package com.ifsc.tarefas.model;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Tarefa {
@@ -30,10 +31,20 @@ public class Tarefa {
     private LocalDate dataCriacao = LocalDate.now();
     private LocalDate dataLimite;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "categoria_id")
-    private List<Categoria> categoria;
+    //Cria uma relação de muitos para muitos
+    @ManyToMany
+    //Criar uma tabela intermediaria que tem o id da tarefa e categoria
+    @JoinTable(
+        // nome da tabela
+        name = "tarefa_categoria",
+        // o atributo desse objeto juntara a tarefa
+        joinColumns =  @JoinColumn(name = "tarefa_id"),
+        //o atributo de outro objeto que se juntara a tabela intermediaria
+        inverseJoinColumns = @JoinColumn(name = "categoria_id")
+    )
 
+    private Set<Categoria> categorias = new HashSet<>();
+    
     @Enumerated(EnumType.STRING)
     private Status status;
 
@@ -88,6 +99,12 @@ public class Tarefa {
     }
     public void setDataLimite(LocalDate dataLimite) {
         this.dataLimite = dataLimite;
+    }
+    public Set<Categoria> getCategorias() {
+        return categorias;
+    }
+    public void setCategorias(Set<Categoria> categorias) {
+        this.categorias = categorias;
     }
 
 }
