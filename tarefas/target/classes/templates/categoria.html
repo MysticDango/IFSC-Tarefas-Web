@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Categorias</title>
+    <link rel="stylesheet" th:href="@{/style-cat.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Categorias Cadastradas</h1>
+        <ul class="category-list">
+            <li class="category-card" th:each="categoria: ${categorias}">
+                <div class="category-header">
+                    <h2 th:text="${categoria.nome}">Nome</h2>
+                </div>
+                <div class="category-delete">
+                    <span>
+                    <form th:action="@{'/templates-cat/' + ${categoria.id} + '/excluir'}" method="post">
+                        <button onclick="return confirm('Tem certeza que deseja excluir?')" 
+                        type="submit">Excluir</button>
+                    </form>
+            </span>
+                </div>
+            </li>
+            <button><a href="/templates-cat/nova-categoria">Nova Categoria</a></button>
+            <br>
+            <button><a href="/templates/listar">Tarefas</a></button>
+        </ul>
+    </div>
+</body>
+</html>

@@ -22,9 +22,6 @@
                 <div class="task-data">
                     <span class="task-limit">Data Limite: <strong th:text="${tarefa.dataLimite}"></strong></span>
                 </div>
-                <div class="task-category">
-                    <span class="task-cat">Categorias: <strong th:text="${categoria.nome}"></strong></span>
-                </div>
                 <div class="task-delete">
                     <span>
                     <form th:action="@{'/templates/' + ${tarefa.id} + '/excluir'}" method="post">
@@ -35,6 +32,8 @@
                 </div>
             </li>
             <button><a href="/templates/nova-tarefa">Nova Tarefa</a></button>
+            <br>
+            <button><a href="/templates-cat/listar-cat">Categorias</a></button>
         </ul>
     </div>
 </body>

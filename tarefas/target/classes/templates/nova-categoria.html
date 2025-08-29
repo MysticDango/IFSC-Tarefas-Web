@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar nova categoria</title>
+    <link rel="stylesheet" th:href="@{/nova-cat.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Nova Categoria</h1>
+
+        <form th:action="@{/templates-cat/salvar}" th:object="${categoria}" method="post">
+
+            <div>
+                <label> Categoria </label>
+                <input th:field="*{nome}" type="text">
+            </div>
+
+            <br>
+            <button type="submit">Salvar</button>
+            <br>
+            <button><a href="/templates-cat/listar-cat">Cancelar</button>
+
+        </form>
+    </div>
+</body>
+</html>
