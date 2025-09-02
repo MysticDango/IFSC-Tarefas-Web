@@ -1,5 +1,7 @@
 package com.ifsc.tarefas.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,18 +11,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ifsc.tarefas.model.Prioridade;
 import com.ifsc.tarefas.model.Tarefa;
+import com.ifsc.tarefas.model.Categoria;
 import com.ifsc.tarefas.model.Status;
+import com.ifsc.tarefas.repository.CatRepository;
 import com.ifsc.tarefas.repository.TarefaRepository;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
 
 @Controller
 @RequestMapping("/templates")
 public class TemplateService {
 
     private final TarefaRepository tarefaRepository;
+    private final CatRepository catRepository;
 
-    public TemplateService(TarefaRepository tarefaRepository){
+    public TemplateService(TarefaRepository tarefaRepository, CatRepository catRepository){
         this.tarefaRepository = tarefaRepository;
+        this.catRepository = catRepository;
     }
 
 
@@ -72,7 +81,26 @@ public class TemplateService {
         return "tarefa";
     }
     
+    // tela de associar tarefas e categorias
+    @GetMapping("/{tarefaId}/associar-categoria/{categoriaId}")
+        String associarTarefaParaUmaCategoria(Model model, @PathVariable Long tarefaId){
+
+    List<Categoria> categorias = catRepository.findAll();
+    model.addAttribute("categorias",catRepository.findAll());
+    for 
+
+    var tarefa = tarefaRepository.findById(tarefaId);
+    model.addAttribute("tarefa", tarefa.get());
+
+    return "gerenciar-categoria";
     
+    }
+    
+    @PostMapping("/{tarefaId}/associar-categoria/{categoriaId}")
+    String associarTarefaParaUmaCategoria(@PathVariable Long tarefaId, @PathVariable Long categoriaId) {
+    var tarefa = tarefaRepository.findById(tarefaId);
+    var categoria = catRepository.findById(categoriaId);
+
+    }
+
 }
-    
-    

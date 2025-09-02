@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Categorias</title>
     <link rel="stylesheet" th:href="@{/style-cat.css}">
 </head>
+
 <body>
     <div class="container">
         <h1>Categorias Cadastradas</h1>
@@ -16,11 +18,11 @@
                 </div>
                 <div class="category-delete">
                     <span>
-                    <form th:action="@{'/templates-cat/' + ${categoria.id} + '/excluir'}" method="post">
-                        <button onclick="return confirm('Tem certeza que deseja excluir?')" 
-                        type="submit">Excluir</button>
-                    </form>
-            </span>
+                        <form th:action="@{'/templates-cat/' + ${categoria.id} + '/excluir'}" method="post">
+                            <button onclick="return confirm('Tem certeza que deseja excluir?')"
+                                type="submit">Excluir</button>
+                        </form>
+                    </span>
                 </div>
             </li>
             <button><a href="/templates-cat/nova-categoria">Nova Categoria</a></button>
@@ -29,4 +31,5 @@
         </ul>
     </div>
 </body>
+
 </html>

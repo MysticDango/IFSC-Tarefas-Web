@@ -15,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
+
 @Entity
 public class Tarefa {
 
@@ -24,10 +25,18 @@ public class Tarefa {
 
     @Column(name = "tarefa_id")
     
+    @NotBlank(message = "O campo título é obrigatório")
+    @Size(min = 3, max = 100, message = "O campo título deve ter entre 3 e 100 caracteres")
     private String titulo;
+
+    @Size(max = 500, message = "A descrição deve ter no máximo 500 caracteres")
+    @NotBlank(message "O campo descrição é obrigatório")
     private String descricao;
+
+    @NotBlank(message "O campo responsável é obrigatório")
     private String responsavel;
 
+    @FutureOrPresent(message = "A data limite deve ser futura ou no presente")
     private LocalDate dataCriacao = LocalDate.now();
     private LocalDate dataLimite;
 
@@ -45,9 +54,11 @@ public class Tarefa {
 
     private Set<Categoria> categorias = new HashSet<>();
     
+    @NotNull(messsage = "O campo status é obrigatório")
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @NotNull(message = "O campo prioridade é obrigatório")
     @Enumerated(EnumType.STRING)
     private Prioridade prioridade;
 
