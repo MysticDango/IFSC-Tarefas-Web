@@ -16,7 +16,6 @@ import com.ifsc.tarefas.model.Status;
 import com.ifsc.tarefas.repository.CatRepository;
 import com.ifsc.tarefas.repository.TarefaRepository;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 
@@ -87,7 +86,9 @@ public class TemplateService {
 
     List<Categoria> categorias = catRepository.findAll();
     model.addAttribute("categorias",catRepository.findAll());
-    for 
+    for (Categoria categoria : categorias) {
+        System.out.println("todas as categorias " + categoria.getNome() + " - " + categoria.getId());
+    }
 
     var tarefa = tarefaRepository.findById(tarefaId);
     model.addAttribute("tarefa", tarefa.get());
@@ -101,6 +102,14 @@ public class TemplateService {
     var tarefa = tarefaRepository.findById(tarefaId);
     var categoria = catRepository.findById(categoriaId);
 
+    if(tarefa.isEmpty() || categoria.isEmpty()){
+        return "redirect:/templates/listar";
+    }
+
+    tarefa.get().getCategorias().add(categoria.get());
+
+    tarefaRepository.save(tarefa.get());
+    return "redirect:/templates/listar";
     }
 
 }

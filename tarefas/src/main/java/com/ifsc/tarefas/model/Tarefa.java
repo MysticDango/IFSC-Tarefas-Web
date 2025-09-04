@@ -14,6 +14,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 
 @Entity
@@ -29,11 +33,11 @@ public class Tarefa {
     @Size(min = 3, max = 100, message = "O campo título deve ter entre 3 e 100 caracteres")
     private String titulo;
 
+    @NotBlank(message = "O campo título é obrigatório")
     @Size(max = 500, message = "A descrição deve ter no máximo 500 caracteres")
-    @NotBlank(message "O campo descrição é obrigatório")
     private String descricao;
 
-    @NotBlank(message "O campo responsável é obrigatório")
+    @NotBlank(message = "O campo responsável é obrigatório")
     private String responsavel;
 
     @FutureOrPresent(message = "A data limite deve ser futura ou no presente")
@@ -54,7 +58,7 @@ public class Tarefa {
 
     private Set<Categoria> categorias = new HashSet<>();
     
-    @NotNull(messsage = "O campo status é obrigatório")
+    @NotNull(message = "O campo status é obrigatório")
     @Enumerated(EnumType.STRING)
     private Status status;
 
