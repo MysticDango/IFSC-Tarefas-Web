@@ -13,7 +13,8 @@
         <h1>Nova Tarefa</h1>
 
         <form th:action="@{/templates/salvar}" th:object="${tarefa}" method="post">
-
+            <input type="hidden" th:field="*{id}"/>
+            
             <div>
                 <label> Título </label>
                 <input th:field="*{titulo}" type="text">

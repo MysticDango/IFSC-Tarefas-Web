@@ -11,10 +11,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 
-
 @Entity
 public class Categoria {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,7 +24,6 @@ public class Categoria {
     // Tarefa que manda nessa relação de muitos para muitos
     @ManyToMany(mappedBy = "categorias")
     private Set<Tarefa> tarefas = new HashSet<>();
-
 
     public Long getId() {
         return id;

@@ -1,5 +1,7 @@
 package com.ifsc.tarefas.services;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
 
 @RestController //anotação que indica que essa classe é um service
 @RequestMapping("/tarefas") //anotação que define padrão url exemplo: /tarefas/inserir
@@ -95,4 +98,11 @@ public class TarefaService {
 
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/por-titulo")
+    public ResponseEntity<List<Tarefa>> buscarPorTitulo(@PathVariable String titulo){
+        return ResponseEntity.ok(tarefaRepository.findByTitulo(titulo));
+    }
+    
+    
 }

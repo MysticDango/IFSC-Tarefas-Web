@@ -30,18 +30,21 @@ public class Tarefa {
     @Column(name = "tarefa_id")
     
     @NotBlank(message = "O campo título é obrigatório")
+
     @Size(min = 3, max = 100, message = "O campo título deve ter entre 3 e 100 caracteres")
     private String titulo;
 
     @NotBlank(message = "O campo título é obrigatório")
+
     @Size(max = 500, message = "A descrição deve ter no máximo 500 caracteres")
     private String descricao;
 
     @NotBlank(message = "O campo responsável é obrigatório")
     private String responsavel;
 
-    @FutureOrPresent(message = "A data limite deve ser futura ou no presente")
     private LocalDate dataCriacao = LocalDate.now();
+
+    @FutureOrPresent(message = "A data limite deve ser futura ou no presente")
     private LocalDate dataLimite;
 
     //Cria uma relação de muitos para muitos
