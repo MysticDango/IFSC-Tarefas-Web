@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ifsc.tarefas.model.Prioridade;
@@ -34,8 +35,36 @@ public class TemplateService {
     @GetMapping("/listar")
     // O model é para adicionar atributos para minha view
     // O html no caso
-    String listarTarefas(Model model) {
-        model.addAttribute("tarefas", tarefaRepository.findAll());
+    String listarTarefas(Model model, @RequestParam(required = false) String titulo,
+            @RequestParam(required = false) String responsavel,
+            @RequestParam(required = false) Prioridade prioridade,
+            @RequestParam(required = false) Status status) {
+        var tarefas = tarefaRepository.findAll();
+        if (titulo != null && !titulo.trim().isEmpty()) {
+            // Java transformando em stream
+            // filtra as tarefas pelo título
+            tarefas = tarefas.stream().filter(t -> t.getTitulo().contains(titulo)).toList();
+        }
+
+        if (responsavel != null && !responsavel.trim().isEmpty()) {
+            tarefas = tarefas.stream().filter(t -> t.getResponsavel().contains(responsavel)).toList();
+        }
+
+        if (prioridade != null) {
+            tarefas = tarefas.stream().filter(t -> t.getPrioridade().equals(prioridade)).toList();
+        }
+
+        if (status != null) {
+            tarefas = tarefas.stream().filter(t -> t.getStatus().equals(status)).toList();
+        }
+
+        model.addAttribute("tarefas", tarefas);
+        model.addAttribute("responsavel", responsavel);
+        model.addAttribute("prioridade", prioridade);
+        model.addAttribute("status", status);
+
+        model.addAttribute("listaPrioridade", Prioridade.values());
+        model.addAttribute("listaStatus", Status.values());
 
         // Vai dizer qual template vai usar
         return "lista";
