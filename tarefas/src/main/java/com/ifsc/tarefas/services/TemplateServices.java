@@ -102,7 +102,7 @@ public class TemplateServices {
         model.addAttribute("prioridades", Prioridade.values());
         // e dos status
         model.addAttribute("listaStatus", Status.values());
-        return "tarefa";
+        return "nova-tarefa";
     }
 
     // Api que vai salvar o formulario
@@ -121,7 +121,7 @@ public class TemplateServices {
             model.addAttribute("listaStatus", Status.values());
             model.addAttribute("erros", "Erro ao salvar tarefa, preencha os campos corretamente.");
             // se tiver erro volta pra pagina
-            return "tarefa";
+            return "nova-tarefa";
         }
 
         // Adiciona atributos quando voltar para a pagina listar

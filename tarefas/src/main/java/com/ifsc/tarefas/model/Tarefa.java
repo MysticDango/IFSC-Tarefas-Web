@@ -24,10 +24,10 @@ import jakarta.validation.constraints.Size;
 public class Tarefa {
 
     @Id
+    @Column(name = "tarefa_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "tarefa_id")
     
     @NotBlank(message = "O campo título é obrigatório")
 
