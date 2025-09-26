@@ -139,7 +139,7 @@ public class TemplateServices {
     }
 
     // pagina de editar
-    @GetMapping("/{id}/editar")
+    @GetMapping("/{id}/editar-tarefa")
     String editar(@PathVariable Long id, Model model) {
         // vai procurar tarefas pelo id, se n achar
         var tarefa = tarefaRepository.findById(id).orElse(null);
@@ -147,12 +147,12 @@ public class TemplateServices {
             // retornar para pagina inicial
             return "redirect:/templates/listar";
         }
-        // adiciona a tarefa que vai ser editada e todo o resto ao template do
+        // adiciona a tarefa que vai ser editada todo o resto ao template do
         // formulario
         model.addAttribute("tarefa", tarefa);
         model.addAttribute("prioridades", Prioridade.values());
         model.addAttribute("listaStatus", Status.values());
-        return "tarefa";
+        return "editar-tarefa";
     }
 
     // tela de associar tarefas e categorias

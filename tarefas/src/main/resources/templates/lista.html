@@ -83,9 +83,13 @@
                 <div class="task-delete">
                     <span>
                         <form th:action="@{'/templates/' + ${tarefa.id} + '/excluir'}" method="post">
-                            <button onclick="return confirm('Tem certeza que deseja excluir?')"
-                                type="submit">Excluir</button>
+                            <button onclick="return confirm('Tem certeza que deseja excluir?')"type="submit">Excluir</button>
                         </form>
+                    </span>
+                </div>
+                <div class="task-edit">
+                    <span>
+                        <a th:href="@{'/templates/' + ${tarefa.id} + '/editar-tarefa'}">Editar</a>
                     </span>
                 </div>
             </li>
