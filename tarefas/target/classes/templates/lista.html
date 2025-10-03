@@ -26,7 +26,7 @@
                     <div class="col-md-6">
                         <label for="titulo" class="form-label">Título</label>
                         <input type="text" class="form-control" id="titulo" name="titulo" th:value="${titulo}"
-                            placeholder="Buscar por titulo">
+                            placeholder="Buscar titulo">
 
                         <label for="prioridade" class="form-label">Prioridade</label>
                         <select type="field" class="form-control" id="prioridade" name="prioridade">
@@ -43,7 +43,7 @@
                     <div class="col-md-6">
                         <label for="responsavel" class="form-label">Responsável</label>
                         <input type="text" class="form-control" id="responsavel" name="responsavel"
-                            th:value="${responsavel}" placeholder="Buscar por responsavel">
+                            th:value="${responsavel}" placeholder="Buscar responsavel">
 
                         <label for="status" class="form-label">Status</label>
                         <select type="field" class="form-control" id="status" name="status">
@@ -93,8 +93,11 @@
                     </span>
                 </div>
             </li>
-            <button><a href="/templates/nova-tarefa">Nova Tarefa</a></button>
-            <button><a href="/templates-cat/listar-cat">Categorias</a></button>
+            <div class="button">
+                <a href="/templates/nova-tarefa">Nova Tarefa</a>
+                <a href="/templates-cat/listar-cat">Categorias</a>
+            </div>
+            
         </ul>
     </div>
 

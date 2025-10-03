@@ -12,7 +12,11 @@
     <div class="container">
         <h1>Nova Categoria</h1>
 
-        <form th:action="@{/templates-cat/salvar}" th:object="${categoria}" method="post">
+        <form th:action="@{/templates-cat/salvar}" th:object="${categoria}" method="post" novalidate>
+
+            <div th:if="${erros != null}" class="alert alert-danger">
+                <p th:text="${erros}"></p>
+            </div>
 
             <div>
                 <label> Categoria </label>
