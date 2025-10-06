@@ -1,0 +1,74 @@
+@import url('https://fonts.cdnfonts.com/css/super-legend-boy');
+
+* {
+    font-family: 'Super Legend Boy', sans-serif;
+}
+
+:root {
+    --primary-color: #007bff;
+    --font-color: #333;
+    --border-radius: 10px;
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: Arial, sans-serif;
+    color: var(--font-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-container {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+}
+
+.register-form .card {
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 20px var(--shadow-color);
+    overflow: hidden;
+}
+
+.card-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px;
+}
+
+.card-body {
+    padding: 20px;
+    background-color: var(--card-bg);
+}
+
+.card-footer {
+    padding: 20px;
+    background-color: var(--card-bg);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

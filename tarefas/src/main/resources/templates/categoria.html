@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -12,28 +12,35 @@
 
 <body>
     <div class="container">
-        <h1>Categorias Cadastradas</h1>
-        <ul class="category-list">
-            <li class="category-card" th:each="categoria: ${categorias}">
-                <div class="category-header">
-                    <h2 th:text="${categoria.nome}">Nome</h2>
+        <h1 class="my-4 text-center">Categorias Cadastradas</h1>
+
+        <ul class="task-list">
+            <li class="task-card" th:each="categoria: ${categorias}">
+                <div class="task-header">
+                    <h2 th:text="${categoria.nome}">Nome da Categoria</h2>
                 </div>
-                <div class="category-delete">
-                    <span>
-                        <form th:action="@{'/templates-cat/' + ${categoria.id} + '/excluir'}" method="post">
-                            <button onclick="return confirm('Tem certeza que deseja excluir?')"
-                                type="submit">Excluir</button>
-                        </form>
-                    </span>
+
+                <div class="task-delete mt-3">
+                    <form th:action="@{'/templates-cat/' + ${categoria.id} + '/excluir'}" method="post">
+                        <button type="submit" onclick="return confirm('Tem certeza que deseja excluir?')" class="btn btn-danger btn-sm">
+                            <i class="bi bi-trash"></i> Excluir
+                        </button>
+                    </form>
                 </div>
             </li>
-            <button><a href="/templates-cat/nova-categoria">Nova Categoria</a></button>
-            <button><a href="/templates/listar">Tarefas</a></button>
         </ul>
+
+        <div class="button mt-4 text-center">
+            <a href="/templates-cat/nova-categoria" class="btn btn-primary me-2">
+                <i class="bi bi-plus-circle"></i> Nova Categoria
+            </a>
+            <a href="/templates/listar" class="btn btn-secondary">
+                <i class="bi bi-list-task"></i> Ver Tarefas
+            </a>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 
 </html>
