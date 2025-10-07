@@ -83,7 +83,8 @@
                 <div class="task-delete">
                     <span>
                         <form th:action="@{'/templates/' + ${tarefa.id} + '/excluir'}" method="post">
-                            <button onclick="return confirm('Tem certeza que deseja excluir?')"type="submit">Excluir</button>
+                            <button onclick="return confirm('Tem certeza que deseja excluir?')" type="submit"><i
+                                    class="bi bi-trash"></i>Excluir</button>
                         </form>
                     </span>
                 </div>
@@ -93,11 +94,12 @@
                     </span>
                 </div>
             </li>
+            <br>
             <div class="button">
                 <a href="/templates/nova-tarefa">Nova Tarefa</a>
                 <a href="/templates-cat/listar-cat">Categorias</a>
             </div>
-            
+
         </ul>
     </div>
 

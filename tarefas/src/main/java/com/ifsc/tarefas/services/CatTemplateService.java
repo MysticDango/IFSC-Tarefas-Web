@@ -2,12 +2,17 @@ package com.ifsc.tarefas.services;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ifsc.tarefas.repository.CatRepository;
+
+import jakarta.validation.Valid;
+
 import com.ifsc.tarefas.model.Categoria;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -41,7 +46,17 @@ public class CatTemplateService {
     @PostMapping("/salvar")
     // modelAttribute vai pegar os dados do objeto do nome que passamos
     // e que veio na view
-    String salvar(@ModelAttribute("categoria")Categoria categoria){
+    String salvar(@Valid @ModelAttribute("categoria")Categoria categoria, BindingResult br, Model model,
+    RedirectAttributes ra){
+        if(br.hasErrors()){
+            model.addAttribute("categoria", categoria);
+            model.addAttribute("erros", "Erro ao salvar tarefa, preencha o campo corretamente.");
+
+            return "nova-categoria";
+        }
+
+        ra.addFlashAttribute("sucesso", "Categoria salva com sucesso!");
+
         catRepository.save(categoria);
         //Redireciona depois de salvar direto para listagem
         return "redirect:/templates-cat/listar-cat";
