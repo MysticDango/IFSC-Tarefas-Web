@@ -47,7 +47,7 @@ public class TemplateServices {
             @RequestParam(required = false) String titulo,
             @RequestParam(required = false) String responsavel, 
             @RequestParam(required = false) Status status,
-            @RequestParam(required = false) Prioridade prioridade, 
+            @RequestParam(required = false) Prioridade prioridade,
             HttpServletRequest req) {
         // o primeiro argumento é para como esse objeto sera chamado dentro da view
         // o segundo argumento é o objeto(s) que irei passar
@@ -102,6 +102,7 @@ public class TemplateServices {
         model.addAttribute("prioridades", Prioridade.values());
         // e dos status
         model.addAttribute("listaStatus", Status.values());
+
         return "nova-tarefa";
     }
 
@@ -169,7 +170,7 @@ public class TemplateServices {
         var tarefa = tarefaRepository.findById(tarefaId);
         model.addAttribute("tarefa", tarefa.get());
 
-        return "gerenciar-categoria";
+        return "associar-categoria";
 
     }
 

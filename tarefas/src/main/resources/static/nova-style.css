@@ -81,7 +81,7 @@ button a {
 
 button[type="submit"]:hover,
 button a:hover {
-    background-color: #0056b3;
+    background-color: #00ff0d;
 }
 
 .alert.alert-danger {
@@ -92,38 +92,29 @@ button a:hover {
     border: 1px solid #f5c6cb;
 }
 
-button a {
-    display: block;
-}
-
-button:last-of-type {
-    background-color: var(--danger-color);
-    margin-top: 10px;
-}
-
-button:last-of-type:hover {
-    background-color: #b02a37;
-}
-
-button a {
-    color: white;
-    text-decoration: none;
-    width: 100%;
-    display: inline-block;
-}
-
-.btn-cancel {
-    background-color: var(--danger-color);
-    color: white;
-    padding: 10px 20px;
+.form-card {
+    background-color: var(--card-bg);
+    padding: 30px;
     border-radius: var(--border-radius);
-    text-decoration: none;
-    text-align: center;
-    font-weight: bold;
-    transition: background-color 0.3s;
+    box-shadow: 0 10px 20px var(--shadow-color);
+    border: 1px solid var(--primary-color);
 }
 
-.btn-cancel:hover {
-    background-color: #b02a37;
+.btn-success {
+    background-color: var(--success-color);
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
 }
 
