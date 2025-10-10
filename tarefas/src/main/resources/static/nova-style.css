@@ -81,7 +81,7 @@ button a {
 
 button[type="submit"]:hover,
 button a:hover {
-    background-color: #00ff0d;
+    background-color: #28a745;
 }
 
 .alert.alert-danger {

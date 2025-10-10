@@ -20,51 +20,51 @@
                 <p th:text="${erros}"></p>
             </div>
 
-            <input class="d-none" th:field="*{id}" type="text">
-
+            <input class="d-none" th:field="*{id}" type="hidden">
 
             <div>
-                <label> Título </label>
-                <input th:field="*{titulo}" type="text">
+                <label for="titulo">Título</label>
+                <input th:field="*{titulo}" type="text" id="titulo" class="form-control">
             </div>
 
             <div>
-                <label> Descrição </label>
-                <textarea th:field="*{descricao}" rows="3"></textarea>
+                <label for="descricao">Descrição</label>
+                <textarea th:field="*{descricao}" rows="3" id="descricao" class="form-control"></textarea>
             </div>
 
             <div>
-                <label> Responsável </label>
-                <input th:field="*{responsavel}" type="text">
+                <label for="responsavel">Responsável</label>
+                <input th:field="*{responsavel}" type="text" id="responsavel" class="form-control">
             </div>
 
             <div>
-                <label> Prioridade </label>
-                <select th:field="*{prioridade}">
+                <label for="prioridade">Prioridade</label>
+                <select th:field="*{prioridade}" id="prioridade" class="form-control">
                     <option th:each="p : ${prioridades}" th:value="${p}" th:text="${p}"></option>
                 </select>
             </div>
 
             <div>
-                <label> Status </label>
-                <select th:field="*{status}">
+                <label for="status">Status</label>
+                <select th:field="*{status}" id="status" class="form-control">
                     <option th:each="s : ${listaStatus}" th:value="${s}" th:text="${s}"></option>
                 </select>
             </div>
 
             <div>
-                <label> Data Limite </label>
-                <input type="date" th:field="*{dataLimite}">
+                <label for="dataLimite">Data Limite</label>
+                <input type="date" th:field="*{dataLimite}" id="dataLimite" class="form-control">
             </div>
 
-            <button type="submit">Editar</button>
-            <br>
-            <a class="btn-cancel" href="/templates/listar">Cancelar</a>
+            <div class="d-flex justify-content-between mt-4">
+                <button type="submit" class="btn btn-primary">Salvar Edição</button>
+                <a class="btn btn-secondary" href="/templates/listar">Cancelar</a>
+            </div>
 
         </form>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
